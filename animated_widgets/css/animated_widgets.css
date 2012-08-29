@@ -174,7 +174,7 @@
   -webkit-box-shadow: 5px 5px 2px #888;
   box-shadow: 5px 5px 2px #888;
   
-  /* font-family: Prosto, Verdana; */
+   font-family: Prosto, Georgia, serif; 
 }
 
 .block-widgets .block-title { 
