@@ -1,0 +1,6 @@
+name = Animated Widgets
+description = Animated widgets
+package = Microgame Portal Modules
+core = 7.x
+dependencies[] = block
+stylesheets[screen][] = css/animated_widgets.css

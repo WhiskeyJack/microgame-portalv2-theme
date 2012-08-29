@@ -1,0 +1,227 @@
+<?php
+
+/**
+ * @file
+ * Module file for widgets.
+ */
+
+/**
+ * Implements hook_menu().
+ *
+ * Provides a default page to explain what this module does.
+ */
+function animated_widgets_menu() {
+
+  $items['profile'] = array(
+      'page callback' => 'animated_widgets_page_profile',
+      'access callback' => 'animated_widgets_check_access', // only allow widgets to show for logged in users 
+      'title' => 'Widgets',
+  );
+  return $items;
+}
+
+function animated_widgets_check_access() {
+  global $user;
+  $access = $user->uid == 0 ? FALSE : TRUE;
+  return $access;
+}
+
+/**
+ * Simple page function to explain what the block example is about.
+ */
+function animated_widgets_page_profile() {
+  $page = array(
+      '#type' => 'markup',
+      '#markup' => t('Profile page placeholder'),
+  );
+  return $page;
+}
+
+/**
+ * Implements hook_block_info().
+ *
+ * This hook declares what blocks are provided by the module.
+ */
+function animated_widgets_block_info() {
+  $blocks['animated_widgets_profile'] = array(
+      // info: The name of the block.
+      'info' => t('Widget Profile'),
+      // Block caching options (per role, per user, etc.)
+      'cache' => DRUPAL_CACHE_PER_ROLE, // default
+      'region' => 'content', // Show in main content region
+      'visibility' => BLOCK_VISIBILITY_LISTED, // Only show on front page
+      'pages' => '<front>',
+      'status' => 1, // enable the block/widget
+  );
+  $blocks['animated_widgets_progress'] = array(
+      'info' => t('Widget Progress'),
+      'cache' => DRUPAL_CACHE_PER_ROLE,
+      'region' => 'content',
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+      'pages' => '<front>',
+      'status' => 1,
+  );
+  $blocks['animated_widgets_games'] = array(
+      'info' => t('Widget Games'),
+      'cache' => DRUPAL_CACHE_PER_ROLE,
+      'region' => 'content',
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+      'pages' => '<front>',
+      'status' => 1,
+  );
+  $blocks['animated_widgets_sessions'] = array(
+      'info' => t('Widget Sessions'),
+      'cache' => DRUPAL_CACHE_PER_ROLE,
+      'region' => 'content',
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+      'pages' => '<front>',
+      'status' => 1,
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ *
+ * This hook generates the contents of the blocks themselves.
+ */
+function animated_widgets_block_view($delta = '') {
+  //The $delta parameter tells us which block is being requested.
+  switch ($delta) {
+    case 'animated_widgets_profile':
+      // The subject is displayed at the top of the block. Note that it
+      // should be passed through t() for translation. The title configured
+      // for the block using Drupal UI supercedes this one.
+      $block['subject'] = '';
+      $block['content'] = animated_widgets_contents($delta);
+      break;
+    case 'animated_widgets_progress':
+      $block['subject'] = '';
+      $block['content'] = animated_widgets_contents($delta);
+      break;
+    case 'animated_widgets_games':
+      $block['subject'] = '';
+      $block['content'] = animated_widgets_contents($delta);
+      break;
+    case 'animated_widgets_sessions':
+      $block['subject'] = '';
+      $block['content'] = animated_widgets_contents($delta);
+      break;
+  }
+  return $block;
+}
+
+/**
+ * A module-defined block content function.
+ */
+function animated_widgets_contents($which_block) {
+  $path =  drupal_get_path('module', 'animated_widgets') . '/images/';
+  $content = array();
+  switch ($which_block) {
+    case 'animated_widgets_profile':
+      global $user;
+      $user_item = user_load($user->uid);
+      $pic = $user_item->field_gender['und'][0]['value'] == 1 ? $path . 'dexter200.png' : $path . 'deedee200.png';
+      /*
+        if ($user->picture) {
+        $user_item = user_load($user->uid);
+        $content[] = array(
+        '#theme' => 'image_formatter',
+        // '#image_style' => 'thumbnail',
+        '#item' => array(
+        'uri' => $user_item->picture->uri,
+        'alt' => '',
+        'title' => '',
+        'height' => 130,
+        'width' => 130,
+        'attributes' => array('id' => 'animated_widgets_profile_picture')
+        ),
+        );
+        } */
+
+      $content[] = array(
+          '#theme' => 'image_formatter',
+          '#item' => array(
+              'uri' => $pic,
+              'alt' => '',
+              'title' => '',
+              'width' => 200,
+              'height' => 'auto',
+              'attributes' => array('class' => 'animated_widgets_picture')
+          ),
+      );
+      $content[] = array(
+          '#markup' => '<h2 class="block-title">Profile</h2>',
+      );
+      return $content;
+      
+    case 'animated_widgets_games':
+      $content[] = array(
+          '#theme' => 'image_formatter',
+          '#item' => array(
+              'uri' => $path . 'joystick200.png',
+              'alt' => '',
+              'title' => '',
+              'width' => 200,
+              'height' => 'auto',
+              'attributes' => array('class' => 'animated_widgets_picture')
+          ),
+      );
+      $content[] = array(
+          '#markup' => '<h2 class="block-title">Games</h2>',
+      );
+      return $content;
+    case 'animated_widgets_sessions':
+      $content[] = array(
+          '#theme' => 'image_formatter',
+          '#item' => array(
+              'uri' => $path . 'lightbulb200.png',
+              'alt' => '',
+              'title' => '',
+              'width' => 200,
+              'height' => 'auto',
+              'attributes' => array('class' => 'animated_widgets_picture')
+          ),
+      );
+      $content[] = array(
+          '#markup' => '<h2 class="block-title">Sessions</h2>',
+      );
+      return $content;
+    case 'animated_widgets_progress':
+      $content[] = array(
+          '#theme' => 'image_formatter',
+          '#item' => array(
+              'uri' => $path . 'arrowgreen200.png',
+              'alt' => '',
+              'title' => '',
+              'width' => 200,
+              'height' => 'auto',
+              'attributes' => array('class' => 'animated_widgets_picture')
+          ),
+      );
+      $content[] = array(
+          '#markup' => '<h2 class="block-title">Progress</h2>',
+      );
+      return $content;
+  }
+}
+
+/*
+function microgame_preprocess_block(&$vars) {    
+  if ($vars['block_html_id'] ==  'block-widgets-widgets-profile') {     
+    $vars['attributes_array']['class'][] = 'view';    
+    $vars['classes_array'][] = 'view';    
+    }
+} */
+
+function animated_widgets_preprocess_block(&$vars) {
+  if ($vars['block']->module == 'animated_widgets') {
+    $vars['classes_array'][] = drupal_html_class('view');
+    $vars['classes_array'][] = drupal_html_class('view-first');
+  }
+}
+
+/**
+ * @} End of "defgroup widgets".
+ */
