@@ -154,6 +154,8 @@ function animated_widgets_contents($which_block) {
       $content[] = array(
           '#markup' => '<h2 class="block-title">Profile</h2>',
       );
+      $target = 'profile';
+      drupal_add_js('(function ($) {$("#block-animated-widgets-animated-widgets-' .$target . '").css("cursor","pointer").click( function() { window.location = "' . $target . '"; });  })(jQuery);', array('type' => 'inline', 'scope' => 'footer', 'weight' => 5)  );
       return $content;
       
     case 'animated_widgets_games':
@@ -171,6 +173,8 @@ function animated_widgets_contents($which_block) {
       $content[] = array(
           '#markup' => '<h2 class="block-title">Games</h2>',
       );
+      $target= 'games';
+      drupal_add_js('(function ($) {$("#block-animated-widgets-animated-widgets-' .$target . '").css("cursor","pointer").click( function() { window.location = "' . $target . '"; });  })(jQuery);', array('type' => 'inline', 'scope' => 'footer', 'weight' => 5)  );
       return $content;
     case 'animated_widgets_sessions':
       $content[] = array(
@@ -187,6 +191,8 @@ function animated_widgets_contents($which_block) {
       $content[] = array(
           '#markup' => '<h2 class="block-title">Sessions</h2>',
       );
+      $target= 'sessions';
+      drupal_add_js('(function ($) {$("#block-animated-widgets-animated-widgets-' .$target . '").css("cursor","pointer").click( function() { window.location = "' . $target . '"; });  })(jQuery);', array('type' => 'inline', 'scope' => 'footer', 'weight' => 5)  );
       return $content;
     case 'animated_widgets_progress':
       $content[] = array(
@@ -203,6 +209,8 @@ function animated_widgets_contents($which_block) {
       $content[] = array(
           '#markup' => '<h2 class="block-title">Progress</h2>',
       );
+      $target= 'progress';
+      drupal_add_js('(function ($) {$("#block-animated-widgets-animated-widgets-' .$target . '").css("cursor","pointer").click( function() { window.location = "' . $target . '"; });  })(jQuery);', array('type' => 'inline', 'scope' => 'footer', 'weight' => 5)  );
       return $content;
   }
 }
