@@ -1,0 +1,150 @@
+<?php
+
+/**
+ * @file
+ * Module file for player profile.
+ */
+
+/*
+ * Adds extra fields (like gender) to the account settings of a player
+ * http://steindom.com/articles/exporting-and-creating-field-definitions-drupal-7
+ */
+function player_profile_enable() {
+
+  $userfields = array(
+      'entity_name' => 'user',
+      'bundle_name' => 'user',
+      'data' =>
+      array(
+          0 =>
+          array(
+              'field' =>
+              array(
+                  'translatable' => '0',
+                  'entity_types' =>
+                  array(
+                  ),
+                  'settings' =>
+                  array(
+                      'allowed_values' =>
+                      array(
+                          0 => 'Female',
+                          1 => 'Male',
+                      ),
+                      'allowed_values_function' => '',
+                  ),
+                  'storage' =>
+                  array(
+                      'type' => 'field_sql_storage',
+                      'settings' =>
+                      array(
+                      ),
+                      'module' => 'field_sql_storage',
+                      'active' => '1',
+                      'details' =>
+                      array(
+                          'sql' =>
+                          array(
+                              'FIELD_LOAD_CURRENT' =>
+                              array(
+                                  'field_data_field_gender' =>
+                                  array(
+                                      'value' => 'field_gender_value',
+                                  ),
+                              ),
+                              'FIELD_LOAD_REVISION' =>
+                              array(
+                                  'field_revision_field_gender' =>
+                                  array(
+                                      'value' => 'field_gender_value',
+                                  ),
+                              ),
+                          ),
+                      ),
+                  ),
+                  'foreign keys' =>
+                  array(
+                  ),
+                  'indexes' =>
+                  array(
+                      'value' =>
+                      array(
+                          0 => 'value',
+                      ),
+                  ),
+                  'id' => '5',
+                  'field_name' => 'field_gender',
+                  'type' => 'list_boolean',
+                  'module' => 'list',
+                  'active' => '1',
+                  'locked' => '0',
+                  'cardinality' => '1',
+                  'deleted' => '0',
+                  'columns' =>
+                  array(
+                      'value' =>
+                      array(
+                          'type' => 'int',
+                          'not null' => false,
+                      ),
+                  ),
+                  'bundles' =>
+                  array(
+                      'user' =>
+                      array(
+                          0 => 'user',
+                      ),
+                  ),
+              ),
+              'instance' =>
+              array(
+                  'label' => 'Gender',
+                  'widget' =>
+                  array(
+                      'weight' => '7',
+                      'type' => 'options_buttons',
+                      'module' => 'options',
+                      'active' => 1,
+                      'settings' =>
+                      array(
+                      ),
+                  ),
+                  'settings' =>
+                  array(
+                      'user_register_form' => 1,
+                  ),
+                  'display' =>
+                  array(
+                      'default' =>
+                      array(
+                          'label' => 'above',
+                          'type' => 'list_default',
+                          'weight' => '0',
+                          'settings' =>
+                          array(
+                          ),
+                          'module' => 'list',
+                      ),
+                  ),
+                  'required' => 1,
+                  'description' => '',
+                  'default_value' => NULL,
+                  'id' => '7',
+                  'field_id' => '5',
+                  'field_name' => 'field_gender',
+                  'entity_type' => 'user',
+                  'bundle' => 'user',
+                  'deleted' => '0',
+              ),
+          ),
+      ),
+  );
+
+  foreach ($userfields['data'] as $item) {
+    // only create fields if they do not already exist
+    if (!(field_info_field($item['field']['field_name']))) {
+      field_create_field($item['field']);
+      field_create_instance($item['instance']);
+    }
+  }
+}

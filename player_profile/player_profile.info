@@ -1,0 +1,4 @@
+name = Player Profile
+description = Extended player profile
+package = Microgame Portal Modules
+core = 7.x

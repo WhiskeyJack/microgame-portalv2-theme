@@ -3,4 +3,5 @@ description = Animated widgets
 package = Microgame Portal Modules
 core = 7.x
 dependencies[] = block
+dependencies[] = player_profile
 stylesheets[screen][] = css/animated_widgets.css
