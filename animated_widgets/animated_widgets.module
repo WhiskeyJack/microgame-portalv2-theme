@@ -121,8 +121,12 @@ function animated_widgets_contents($which_block) {
   switch ($which_block) {
     case 'animated_widgets_profile':
       global $user;
-      $user_item = user_load($user->uid);
-      $pic = $user_item->field_gender['und'][0]['value'] == 1 ? $path . 'dexter200.png' : $path . 'deedee200.png';
+      if ($user->uid == 0)
+        $pic = $path . 'deedee200.png';
+      else {
+        $user_item = user_load($user->uid);
+        $pic = $user_item->field_gender['und'][0]['value'] == 1 ? $path . 'dexter200.png' : $path . 'deedee200.png';
+      } 
       /*
         if ($user->picture) {
         $user_item = user_load($user->uid);
