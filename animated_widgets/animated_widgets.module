@@ -77,7 +77,14 @@ function animated_widgets_block_info() {
       'pages' => '<front>',
       'status' => 1,
   );
-
+  $blocks['animated_widgets_updates'] = array(
+      'info' => t('Widget Updates'),
+      'cache' => DRUPAL_CACHE_PER_ROLE,
+      'region' => 'content',
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+      'pages' => '<front>',
+      'status' => 1,
+  );
   return $blocks;
 }
 
@@ -105,6 +112,10 @@ function animated_widgets_block_view($delta = '') {
       $block['content'] = animated_widgets_contents($delta);
       break;
     case 'animated_widgets_sessions':
+      $block['subject'] = '';
+      $block['content'] = animated_widgets_contents($delta);
+      break;
+   case 'animated_widgets_updates':
       $block['subject'] = '';
       $block['content'] = animated_widgets_contents($delta);
       break;
@@ -214,6 +225,24 @@ function animated_widgets_contents($which_block) {
           '#markup' => '<h2 class="block-title">Progress</h2>',
       );
       $target= 'progress';
+      drupal_add_js('(function ($) {$("#block-animated-widgets-animated-widgets-' .$target . '").css("cursor","pointer").click( function() { window.location = "' . $target . '"; });  })(jQuery);', array('type' => 'inline', 'scope' => 'footer', 'weight' => 5)  );
+      return $content;
+    case 'animated_widgets_updates':
+      $content[] = array(
+          '#theme' => 'image_formatter',
+          '#item' => array(
+              'uri' => $path . 'radio-tower200.png',
+              'alt' => '',
+              'title' => '',
+              'width' => 200,
+              'height' => 'auto',
+              'attributes' => array('class' => 'animated_widgets_picture')
+          ),
+      );
+      $content[] = array(
+          '#markup' => '<h2 class="block-title">Updates</h2>',
+      );
+      $target= 'updates';
       drupal_add_js('(function ($) {$("#block-animated-widgets-animated-widgets-' .$target . '").css("cursor","pointer").click( function() { window.location = "' . $target . '"; });  })(jQuery);', array('type' => 'inline', 'scope' => 'footer', 'weight' => 5)  );
       return $content;
   }
