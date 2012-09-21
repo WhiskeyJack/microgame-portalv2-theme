@@ -1,11 +1,50 @@
 <?php
+
 /**
  * @file
  * Install, update, and uninstall functions for the subdomain_manager module.
  */
-
 function subdomain_manager_uninstall() {
   db_drop_table('microgame_subdomains');
+  user_role_delete('portal manager');
+  user_role_delete('subdomain manager');
+  menu_delete('microgame_portal');
+}
+
+function subdomain_manager_install() {
+  
+  $role = new stdClass();
+  $role->name = 'portal manager';
+  // load the authenticated user role
+  $auth_role = user_role_load(DRUPAL_AUTHENTICATED_RID);
+  // Give the weight more than authenticate user, so that
+  // New role will have all the authenticated user permissions by default.
+  $role->weight = $auth_role->weight + 2;
+  user_role_save($role);
+  $auth_permissions = user_role_permissions(array(DRUPAL_AUTHENTICATED_RID => 'authenticated users'));
+  $auth_permissions[DRUPAL_AUTHENTICATED_RID]  += array('create subdomains' => 1, 'edit subdomain' => 1);
+  // Grant permissions to our 'New role' role
+  user_role_grant_permissions($role->rid, array_keys($auth_permissions[DRUPAL_AUTHENTICATED_RID]));
+
+  $role = new stdClass();
+  $role->name = 'subdomain manager';
+  // load the authenticated user role
+  $auth_role = user_role_load(DRUPAL_AUTHENTICATED_RID);
+  // Give the weight more than authenticate user, so that
+  // New role will have all the authenticated user permissions by default.
+  $role->weight = $auth_role->weight + 1;
+  user_role_save($role);
+  $auth_permissions = user_role_permissions(array(DRUPAL_AUTHENTICATED_RID => 'authenticated users'));
+  $auth_permissions[DRUPAL_AUTHENTICATED_RID] += array('edit subdomain' => 1);
+  // Grant permissions to our 'New role' role
+  user_role_grant_permissions($role->rid, array_keys($auth_permissions[DRUPAL_AUTHENTICATED_RID]));
+  
+  $menu = array(
+      'menu_name' => 'microgame_portal',
+      'title' => st('Microgame portal'),
+      'description' => st('Microgame portal administration pages'),
+  );
+  menu_save($menu);
 }
 
 /*
@@ -21,6 +60,12 @@ function subdomain_manager_schema() {
           ),
           'sd_name' => array(
               'description' => 'Name of the subdomain',
+              'type' => 'varchar',
+              'length' => 50,
+              'not null' => TRUE,
+          ),
+          'sd_group' => array(
+              'description' => 'Groupname of the subdomain',
               'type' => 'varchar',
               'length' => 50,
               'not null' => TRUE,

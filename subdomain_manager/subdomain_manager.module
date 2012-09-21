@@ -1,19 +1,56 @@
 <?php
+
 /**
  * @file
  * Hook functions and subdomain function for the subdomain_manager module.
  */
 function subdomain_manager_enable() {
-  /*db_query('
+  /* db_query('
     ALTER TABLE {microgame_subdomains}
     MODIFY updated_on TIMESTAMP NOT NULL
     DEFAULT CURRENT_TIMESTAMP
     ON UPDATE CURRENT_TIMESTAMP'
-  );*/
-drupal_set_message(subdomain()->name());
+    ); */
 }
 
-/***
+function subdomain_manager_permission() {
+  return array(
+      'create subdomains' => array(
+          'title' => t('Create new subdomains'),
+          'description' => t('Allow users to configure new subdomains'),
+      ),
+      'edit subdomain' => array(
+          'title' => t('Edit subdomain'),
+          'description' => t('Allow users to configure a subdomain'),
+      ),
+  );
+}
+
+function subdomain_manager_menu() {
+  $items["subdomain/create"] = array(
+      'title' => 'Create subdomain',
+      'description' => 'Create a new subdomain',
+      'access arguments' => array('create subdomains'),
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('subdomain_create_form'),
+      'file' => 'includes/form.subdomain_edit.inc',
+      'menu_name' => 'microgame_portal',
+      'weight' => 10
+  );
+  $items["subdomain/edit"] = array(
+      'title' => 'Edit subdomain',
+      'description' => 'Edit a subdomain',
+      'access arguments' => array('edit subdomain'),
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('subdomain_edit_form'),
+      'file' => 'includes/form.subdomain_edit.inc',
+      'menu_name' => 'microgame_portal',
+      'weight' => 11
+  );
+  return $items;
+}
+
+/* *
  * Retrieves the subdomain singleton instance
  */
 function subdomain() {
