@@ -7,7 +7,7 @@
 class Subdomain {
 
   private $name;
-  private $group;
+  private $groupname;
   private $id;
 
   function __construct() {
@@ -16,7 +16,7 @@ class Subdomain {
     $subdomain = $firstdomain == $servername[count($servername)-2] ? '' : $firstdomain;
     $details = $this->fetch_by_name($subdomain);
     $this->name = $details['name'];
-    $this->group = $details['group'];
+    $this->groupname = $details['group'];
     $this->id = $details['sdid'];
   }
 
@@ -25,7 +25,7 @@ class Subdomain {
   }
 
   function group() {
-    return $this->group;
+    return $this->groupname;
   }
 
   function id() {
@@ -34,10 +34,20 @@ class Subdomain {
 
   function get_array($id = NULL) {
     if (is_null($id)){
-      return array('sdid' => $this->id, 'name' => $this->name, 'group' => $this->group);
+      return array('sdid' => $this->id, 'name' => $this->name, 'groupname' => $this->groupname);
     }
     $array =  is_numeric($id) ? $this->fetch_by_id($id) : $this->fetch_by_name($id);
     return $array;
+  }
+  
+  function name_exists($name) {
+    if ($this->fetch_by_name($name)) {
+      return TRUE;
+    }
+    else {
+      return FALSE;
+    }
+      
   }
 
   private function fetch_by_id($id) {

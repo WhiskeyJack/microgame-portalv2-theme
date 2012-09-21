@@ -32,7 +32,7 @@ function subdomain_manager_menu() {
       'description' => 'Create a new subdomain',
       'access arguments' => array('create subdomains'),
       'page callback' => 'drupal_get_form',
-      'page arguments' => array('subdomain_create_form'),
+      'page arguments' => array('subdomain_edit_form'),
       'file' => 'includes/form.subdomain_edit.inc',
       'menu_name' => 'microgame_portal',
       'weight' => 10
