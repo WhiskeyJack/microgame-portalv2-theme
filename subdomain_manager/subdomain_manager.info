@@ -1,0 +1,7 @@
+name = Subdomain Manager
+description = Manages subdomain detection and settings
+package = Microgame Portal Modules
+core = 7.x
+
+files[] = subdomain_manager.module
+files[] = includes/class.subdomain.inc

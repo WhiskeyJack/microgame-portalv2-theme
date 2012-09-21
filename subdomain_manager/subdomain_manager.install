@@ -1,0 +1,56 @@
+<?php
+/**
+ * @file
+ * Install, update, and uninstall functions for the subdomain_manager module.
+ */
+
+function subdomain_manager_uninstall() {
+  db_drop_table('microgame_subdomains');
+}
+
+/*
+function subdomain_manager_schema() {
+  $schema['microgame_subdomains'] = array(
+      'description' => 'Contains the configured subdomains',
+      'fields' => array(
+          'sdid' => array(
+              'description' => 'Subdomain ID and primary key',
+              'type' => 'int',
+              'length' => 4,
+              'not null' => TRUE,
+          ),
+          'sd_name' => array(
+              'description' => 'Name of the subdomain',
+              'type' => 'varchar',
+              'length' => 50,
+              'not null' => TRUE,
+          ),
+          'created_on' => array(
+              'description' => 'MySQL timestamp of creation',
+              'mysql_type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
+              'not null' => TRUE,
+          ),
+          'created_by_uid' => array(
+              'description' => 'User ID of creator',
+              'type' => 'int',
+              'length' => 10,
+              'not null' => TRUE,
+          ),
+          'updated_on' => array(
+              'description' => 'MySQL timestamp of last update',
+              'mysql_type' => "TIMESTAMP DEFAULT '0000-00-00 00:00:00'",
+              'not null' => TRUE,
+          ),
+          'updated_by_uid' => array(
+              'description' => 'User ID of last editor',
+              'type' => 'int',
+              'length' => 10,
+              'not null' => TRUE,
+          ),
+      ),
+      'primary key' => array('sdid'),
+      'unique_keys' => array('sd_name'),
+  );
+  return $schema;
+}
+ */

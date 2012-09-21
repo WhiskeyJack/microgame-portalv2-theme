@@ -1,0 +1,25 @@
+<?php
+/**
+ * @file
+ * Hook functions and subdomain function for the subdomain_manager module.
+ */
+function subdomain_manager_enable() {
+  /*db_query('
+    ALTER TABLE {microgame_subdomains}
+    MODIFY updated_on TIMESTAMP NOT NULL
+    DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP'
+  );*/
+drupal_set_message(subdomain()->name());
+}
+
+/***
+ * Retrieves the subdomain singleton instance
+ */
+function subdomain() {
+  static $_subdomain;
+  if (!isset($_subdomain)) {
+    $_subdomain = new Subdomain();
+  }
+  return $_subdomain;
+}
