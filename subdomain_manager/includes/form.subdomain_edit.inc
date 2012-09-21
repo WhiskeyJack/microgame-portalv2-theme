@@ -15,7 +15,7 @@ function subdomain_edit_form($form, &$form_state, $new = FALSE) {
   }
   else {
     $arg = filter_xss(arg(2));
-    $defaults = subdomain()->get_details_in_array($arg);
+    $defaults = subdomain()->get_array($arg);
   }
 
   $form['subdomain_name'] = array(
