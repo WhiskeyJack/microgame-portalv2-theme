@@ -92,6 +92,16 @@ body {
   clear: both; /* Clear the logo */
 }
 
+.mg_portal_admin { /* portal administration menu link */
+  margin: 5px;
+  width: 50px;
+  height: 66px;
+  display: block;
+  background: transparent url('../images/microgame-menu/tool_off.png') center top no-repeat;
+}
+.mg_portal_admin:hover { /* portal administration menu link */
+  background-image: url('../images/microgame-menu/tool_on.png') 
+}
 /*
  * Main (container for everything else)
  */
