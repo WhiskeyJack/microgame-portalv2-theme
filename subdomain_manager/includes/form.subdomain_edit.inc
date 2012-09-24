@@ -64,7 +64,8 @@ function subdomain_edit_form_submit($form, &$form_state) {
             ))
             ->execute();
     drupal_set_message(t('Subdomain "@name" has been created', array('@name' => $form_state['values']['subdomain_name'])));
-  } else {
+  }
+  else {
     // update an existing subdomain
     $mysqlTime = strftime("%Y-%m-%d %H:%M:%S");
     db_update('microgame_subdomains')
