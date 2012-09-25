@@ -92,16 +92,66 @@ body {
   clear: both; /* Clear the logo */
 }
 
-.mg_portal_admin { /* portal administration menu link */
-  margin: 5px;
-  width: 50px;
-  height: 66px;
-  display: block;
-  background: transparent url('../images/microgame-menu/tool_off.png') center top no-repeat;
+a.mg_portal_menu { /* portal profile menu items */
+  background-image: url('../images/set_1.png') ;
+  margin: 0;
+  width: 56px;
+  height: 75px;
+  display: inline-block;
+  font-family: "DejaVu Sans", Verdana;
+   font-size: 0;
+   text-align: center;
 }
-.mg_portal_admin:hover { /* portal administration menu link */
-  background-image: url('../images/microgame-menu/tool_on.png') 
+
+a.mg_portal_profile { /* portal profile menu link */
+  background-position: -12px -20px;
 }
+
+a.mg_portal_profile:hover { /* portal profile menu link */
+  background-position: -12px 80px;
+}
+
+a.mg_portal_activities { /* portal profile menu link */
+  background-position: -82px -20px;
+}
+
+a.mg_portal_activities:hover { /* portal profile menu link */
+  background-position: -82px 80px;
+}
+
+a.mg_portal_scores { /* portal profile menu link */
+  background-position: -167px -20px;
+}
+
+a.mg_portal_scores:hover { /* portal profile menu link */
+  background-position: -167px 80px;
+}
+
+a.mg_portal_players { /* portal profile menu link */
+  background-position: 202px -17px;
+}
+
+a.mg_portal_players:hover { /* portal profile menu link */
+  background-position: 202px 83px;
+}
+
+a.mg_portal_stats { /* portal profile menu link */
+  background-position: 134px -14px;
+}
+
+a.mg_portal_stats:hover { /* portal profile menu link */
+  background-position: 134px 86px;
+}
+
+a.mg_portal_admin { /* portal profile menu link */
+  background-position: 64px -21px;
+}
+
+a.mg_portal_admin:hover { /* portal profile menu link */
+  background-position: 64px 79px;
+}
+
+
 /*
  * Main (container for everything else)
  */
