@@ -5,11 +5,27 @@
  * Module file for player profile.
  */
 
+function portal_profile_menu() {
+  $items["portal/profile"] = array(
+      'title' => 'profile',
+      'description' => 'Profile',
+      'access callback' => 'user_is_logged_in',
+      'page callback' => 'portal_profile_page',
+      'file' => 'includes/page.profile.inc',
+      'menu_name' => 'microgame_portal',
+      'weight' => 10,
+      'options' => array('attributes' => array('class' => array('mg_portal_menu', 'mg_portal_profile'))),
+  );
+  
+  return $items;
+}
+
+
 /*
  * Adds extra fields (like gender) to the account settings of a player
  * http://steindom.com/articles/exporting-and-creating-field-definitions-drupal-7
  */
-function player_profile_enable() {
+function portal_profile_enable() {
 
   $userfields = array(
       'entity_name' => 'user',

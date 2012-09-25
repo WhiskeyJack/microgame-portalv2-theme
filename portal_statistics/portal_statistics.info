@@ -1,0 +1,6 @@
+name = Portal Statistics
+description = Shows statistics of the Microgame portal
+package = Microgame Portal Modules
+core = 7.x
+
+dependencies[] = portal_manager

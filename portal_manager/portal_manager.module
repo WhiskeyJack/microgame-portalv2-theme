@@ -4,7 +4,7 @@
  * Hook functions and subdomain function for the subdomain_manager module.
  */
 
-function subdomain_manager_enable() {
+function portal_manager_enable() {
   /* db_query('
     ALTER TABLE {microgame_subdomains}
     MODIFY updated_on TIMESTAMP NOT NULL
@@ -13,7 +13,7 @@ function subdomain_manager_enable() {
     ); */
 }
 
-function subdomain_manager_permission() {
+function portal_manager_permission() {
   return array(
       'create subdomains' => array(
           'title' => t('Create new subdomains'),
@@ -26,7 +26,7 @@ function subdomain_manager_permission() {
   );
 }
 
-function subdomain_manager_menu() {
+function portal_manager_menu() {
   $items["portal/subdomain/create"] = array(
       'title' => 'Create subdomain',
       'description' => 'Create a new subdomain',
@@ -48,13 +48,13 @@ function subdomain_manager_menu() {
       'weight' => 11
   );
   $items["portal/admin"] = array(
-      'title' => '',
-      'description' => 'Microgame portal administration',
+      'title' => 'configuration',
+      'description' => 'Microgame portal configuration',
       'access arguments' => array('edit subdomain'),
       'page callback' => 'portal_admin_page',
       'file' => 'includes/page.portal_admin.inc',
       'menu_name' => 'microgame_portal',
-      'weight' => 11,
+      'weight' => 100,
       'options' => array('attributes' => array('class' => array('mg_portal_menu', 'mg_portal_admin'))),
   );
   

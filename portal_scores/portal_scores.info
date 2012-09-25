@@ -1,0 +1,6 @@
+name = Portal Scores
+description = Shows player scores in the Microgame portal
+package = Microgame Portal Modules
+core = 7.x
+
+dependencies[] = portal_manager

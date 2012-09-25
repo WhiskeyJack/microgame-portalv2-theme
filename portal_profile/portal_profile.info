@@ -1,0 +1,6 @@
+name = Portal Profile
+description = Extended player profile for the Microgame portal
+package = Microgame Portal Modules
+core = 7.x
+
+dependencies[] = portal_manager

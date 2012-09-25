@@ -1,0 +1,28 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the block_example module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ *
+ * @ingroup block_example
+ */
+function portal_statistics_uninstall() {
+  variable_del('widgets_example_string');
+}
+
+function portal_statistics_install() {
+
+  // super user account
+  $result = db_query("SELECT rid FROM {role} where name like :id",array(':id' => 'administrator'));
+  $admin_rid = $result->fetchField(0);
+  user_role_change_permissions($admin_rid,  array('view group statistics' => 1, 'view all statistics' => 1));
+
+  $role = user_role_load_by_name('portal manager');
+  user_role_change_permissions($role->rid,  array('view group statistics' => 1, 'view all statistics' => 1));
+  
+   $role = user_role_load_by_name('group manager');
+   user_role_change_permissions($role->rid,  array('view group statistics' => 1));
+}

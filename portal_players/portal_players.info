@@ -1,0 +1,6 @@
+name = Portal Players
+description = Administration of players (users) in the Microgame portal
+package = Microgame Portal Modules
+core = 7.x
+
+dependencies[] = portal_manager

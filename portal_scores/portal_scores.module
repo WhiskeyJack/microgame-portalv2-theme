@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Module file for portal activities.
+ */
+
+function portal_scores_menu() {
+  $items["portal/scores"] = array(
+      'title' => 'scores',
+      'description' => 'Scores',
+      'access callback' => 'user_is_logged_in',
+      'page callback' => 'portal_scores_page',
+      'file' => 'includes/page.scores.inc',
+      'menu_name' => 'microgame_portal',
+      'weight' => 30,
+      'options' => array('attributes' => array('class' => array('mg_portal_menu', 'mg_portal_scores'))),
+  );
+  
+  return $items;
+}

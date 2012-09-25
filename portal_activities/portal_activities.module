@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Module file for portal activities.
+ */
+
+function portal_activities_menu() {
+  $items["portal/activities"] = array(
+      'title' => 'activities',
+      'description' => 'Activities',
+      'access callback' => 'user_is_logged_in',
+      'page callback' => 'portal_activities_page',
+      'file' => 'includes/page.activities.inc',
+      'menu_name' => 'microgame_portal',
+      'weight' => 20,
+      'options' => array('attributes' => array('class' => array('mg_portal_menu', 'mg_portal_activities'))),
+  );
+  
+  return $items;
+}

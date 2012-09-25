@@ -9,6 +9,6 @@
  *
  * @ingroup block_example
  */
-function player_profile_uninstall() {
+function portal_scores_uninstall() {
   variable_del('widgets_example_string');
 }

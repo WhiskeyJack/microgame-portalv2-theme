@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Module file for portal statistics.
+ */
+
+function portal_statistics_permission() {
+  return array(
+      'view group statistics' => array(
+          'title' => t('View Microgame portal group statistics'),
+          'description' => t('Allow users to view portal statistics for their own group'),
+      ),
+      'view all statistics' => array(
+          'title' => t('View all Microgame portal statistics'),
+          'description' => t('Allow users to view portal statistics for all groups'),
+      ),
+  );
+}
+
+function portal_statistics_menu() {
+  $items["portal/stats"] = array(
+      'title' => 'stats',
+      'description' => 'Statistics',
+      'access arguments' => array('view group statistics'),
+      'page callback' => 'portal_statistics_page',
+      'file' => 'includes/page.statistics.inc',
+      'menu_name' => 'microgame_portal',
+      'weight' => 50,
+      'options' => array('attributes' => array('class' => array('mg_portal_menu', 'mg_portal_stats'))),
+  );
+  
+  return $items;
+}

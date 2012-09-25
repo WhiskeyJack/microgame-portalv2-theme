@@ -4,14 +4,14 @@
  * @file
  * Install, update, and uninstall functions for the subdomain_manager module.
  */
-function subdomain_manager_uninstall() {
+function portal_manager_uninstall() {
   //db_drop_table('microgame_subdomains');
   user_role_delete('portal manager');
-  user_role_delete('subdomain manager');
+  user_role_delete('group manager');
   menu_delete('microgame_portal');
 }
 
-function subdomain_manager_install() {
+function portal_manager_install() {
 
   $role = new stdClass();
   $role->name = 'portal manager';
@@ -27,7 +27,7 @@ function subdomain_manager_install() {
   user_role_grant_permissions($role->rid, array_keys($auth_permissions[DRUPAL_AUTHENTICATED_RID]));
 
   $role = new stdClass();
-  $role->name = 'subdomain manager';
+  $role->name = 'group manager';
   // load the authenticated user role
   $auth_role = user_role_load(DRUPAL_AUTHENTICATED_RID);
   // Give the weight more than authenticate user, so that
@@ -39,16 +39,27 @@ function subdomain_manager_install() {
   // Grant permissions to our 'New role' role
   user_role_grant_permissions($role->rid, array_keys($auth_permissions[DRUPAL_AUTHENTICATED_RID]));
 
+  // super user account
+  $result = db_query("SELECT rid FROM {role} where name like :id",array(':id' => 'administrator'));
+  $admin_rid = $result->fetchField(0);
+  user_role_change_permissions($admin_rid, array('create subdomains' => 1, 'edit subdomain' => 1));
+  
   $menu = array(
       'menu_name' => 'microgame_portal',
       'title' => st('Microgame portal'),
-      'description' => st('Microgame portal administration pages'),
+      'description' => st('Microgame portal pages'),
   );
+  menu_save($menu);
+  $menu = array(
+      'menu_name' => 'microgame_portal_admin',
+      'title' => st('Microgame portal administration'),
+      'description' => st('Microgame portal administration pages'),
+  );  
   menu_save($menu);
 }
 
 /*
-function subdomain_manager_schema() {
+function portal_manager_schema() {
   $schema['microgame_subdomains'] = array(
       'description' => 'Contains the configured subdomains',
       'fields' => array(
