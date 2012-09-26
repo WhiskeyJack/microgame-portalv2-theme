@@ -6,6 +6,8 @@
  */
 function portal_manager_uninstall() {
   db_drop_table('microgame_subdomains');
+  db_drop_table('microgame_games');
+  db_drop_table('microgame_game_versions');
   user_role_delete('portal manager');
   user_role_delete('group manager');
   menu_delete('microgame_portal');
@@ -122,5 +124,90 @@ function portal_manager_schema() {
       'primary key' => array('sdid'),
       'unique_keys' => array('name'),
   );
+    $schema['microgame_games'] = array(
+      'description' => 'Contains the available games',
+      'fields' => array(
+          'gid' => array(
+              'description' => 'Game ID and primary key',
+              'type' => 'serial',
+              'length' => 4,
+              'not null' => TRUE,
+          ),
+          'name' => array(
+              'description' => 'Name of the game',
+              'type' => 'varchar',
+              'length' => 50,
+              'not null' => TRUE,
+          ),
+          'description' => array(
+              'description' => 'Description of the game',
+              'type' => 'varchar',
+              'length' => 255,
+              'not null' => TRUE,
+          ),
+          'active_version' => array(
+              'description' => 'Active version id of the game',
+              'type' => 'int',
+              'length' => 4,
+              'not null' => TRUE,
+          ),
+          'active_fid' => array(
+              'description' => 'Active file ID of the game',
+              'type' => 'int',
+              'length' => 10,
+              'not null' => TRUE,
+          ),
+          'created_on' => array(
+              'description' => 'Unix timestamp of creation',
+              'type' => 'int',
+              'length' => 11,
+              'not null' => TRUE,
+          ),
+          'created_by_uid' => array(
+              'description' => 'User ID of creator',
+              'type' => 'int',
+              'length' => 10,
+              'not null' => TRUE,
+          ),
+          'updated_on' => array(
+              'description' => 'Unix timestamp of last update',
+              'type' => 'int',
+              'length' => 4,
+              'not null' => TRUE,
+          ),
+          'updated_by_uid' => array(
+              'description' => 'User ID of last editor',
+              'type' => 'int',
+              'length' => 10,
+              'not null' => TRUE,
+          ),
+      ),
+      'primary key' => array('gid'),
+      'unique_keys' => array('name'),
+  );
+  $schema['microgame_game_versions'] = array(
+      'description' => 'Contains the available versions for each game',
+      'fields' => array(
+          'gid' => array(
+              'description' => 'Game ID',
+              'type' => 'serial',
+              'length' => 4,
+              'not null' => TRUE,
+          ),
+          'version_id' => array(
+              'description' => 'Version ID',
+              'type' => 'int',
+              'length' => 4,
+              'not null' => TRUE,
+          ),
+          'fid' => array(
+              'description' => 'File ID for the version',
+              'type' => 'int',
+              'length' => 10,
+              'not null' => TRUE,
+          ),
+      ),
+      'primary key' => array('gid', 'version_id'),
+      );
   return $schema;
 }

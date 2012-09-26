@@ -110,7 +110,6 @@ function subdomain_edit_form_submit($form, &$form_state) {
 }
 
 function mg_is_valid_domain_name($element, &$form_state) {
-  $a=1;
   if (!preg_match('/^[a-z\d\-]+$/i', $element['#value'])) {
     form_error($element, t('Invalid name specified, only alphanumeric characters and the dash are allowed'));
   } 

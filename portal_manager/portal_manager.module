@@ -67,7 +67,39 @@ function portal_manager_menu() {
       'menu_name' => 'microgame_portal',
       'type' => MENU_CALLBACK,
       'weight' => 11
-  );  
+  );
+  $items["portal/admin/games"] = array(
+      'title' => 'Configured games',
+      'description' => 'Configured games',
+      'access arguments' => array('upload games'),
+      'page callback' => 'portal_games_page',
+      'file' => 'includes/page.games.inc',
+      'menu_name' => 'microgame_portal',
+      'type' => MENU_CALLBACK,
+      'weight' => 9
+  );
+  $items["portal/admin/games/upload"] = array(
+      'title' => 'Upload game',
+      'description' => 'Upload a new game',
+      'access arguments' => array('upload games'),
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('game_edit_form'),
+      'file' => 'includes/form.game_edit.inc',
+      'menu_name' => 'microgame_portal',
+      'type' => MENU_CALLBACK,
+      'weight' => 10
+  );
+  $items["portal/admin/games/edit"] = array(
+      'title' => 'Edit subdomain',
+      'description' => 'Edit a game',
+      'access arguments' => array('upload game'),
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('game_edit_form'),
+      'file' => 'includes/form.game_edit.inc',
+      'menu_name' => 'microgame_portal',
+      'type' => MENU_CALLBACK,
+      'weight' => 11
+  );
   return $items;
 }
 
