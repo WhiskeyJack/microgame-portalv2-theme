@@ -6,9 +6,11 @@
 
 class Subdomain {
 
-  private $name;
-  private $groupname;
   private $id;
+  private $name;
+  private $group_name;
+  private $theme_name;
+  
 
   function __construct() {
     $servername = explode('.', $_SERVER["SERVER_NAME"]);
@@ -16,7 +18,8 @@ class Subdomain {
     $subdomain = $firstdomain == $servername[count($servername)-2] ? '' : $firstdomain;
     $details = $this->fetch_by_name($subdomain);
     $this->name = $details['name'];
-    $this->groupname = $details['group'];
+    $this->group_name = $details['group_name'];
+    $this->theme_name = $details['theme_name'];
     $this->id = $details['sdid'];
   }
 
@@ -25,24 +28,32 @@ class Subdomain {
   }
 
   function group() {
-    return $this->groupname;
+    return $this->group_name;
   }
 
+  function theme() {
+    return $this->theme_name;
+  }
+  
   function id() {
     return $this->id;
   }
 
   function get_array($id = NULL) {
     if (is_null($id)){
-      return array('sdid' => $this->id, 'name' => $this->name, 'groupname' => $this->groupname);
+      return array('sdid' => $this->id, 'name' => $this->name, 'group_name' => $this->group_name, 'theme_name' => $this->theme_name);
     }
     $array =  is_numeric($id) ? $this->fetch_by_id($id) : $this->fetch_by_name($id);
     return $array;
   }
   
+  /***
+   * Returns the sdid if the subdomain exists, false otherwise
+   */
   function name_exists($name) {
-    if ($this->fetch_by_name($name)) {
-      return TRUE;
+    $details = $this->fetch_by_name($name);
+    if ($details) {
+      return $details['sdid'];
     }
     else {
       return FALSE;

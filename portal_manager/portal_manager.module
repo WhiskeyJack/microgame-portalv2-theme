@@ -4,15 +4,6 @@
  * Hook functions and subdomain function for the subdomain_manager module.
  */
 
-function portal_manager_enable() {
-  /* db_query('
-    ALTER TABLE {microgame_subdomains}
-    MODIFY updated_on TIMESTAMP NOT NULL
-    DEFAULT CURRENT_TIMESTAMP
-    ON UPDATE CURRENT_TIMESTAMP'
-    ); */
-}
-
 function portal_manager_permission() {
   return array(
       'create subdomains' => array(
@@ -23,31 +14,19 @@ function portal_manager_permission() {
           'title' => t('Edit subdomain'),
           'description' => t('Allow users to configure a subdomain'),
       ),
+     'upload games' => array(
+          'title' => t('Upload games to the portal'),
+          'description' => t('Allow users to upload games to the portal'),
+      ),
+      'enable games' => array(
+          'title' => t('Enable games'),
+          'description' => t('Allow users to enable (uploaded) games for their group'),
+      ),
   );
 }
 
 function portal_manager_menu() {
-  $items["portal/subdomain/create"] = array(
-      'title' => 'Create subdomain',
-      'description' => 'Create a new subdomain',
-      'access arguments' => array('create subdomains'),
-      'page callback' => 'drupal_get_form',
-      'page arguments' => array('subdomain_edit_form'),
-      'file' => 'includes/form.subdomain_edit.inc',
-      'menu_name' => 'microgame_portal_admin',
-      'weight' => 10
-  );
-  $items["portal/subdomain/edit"] = array(
-      'title' => 'Edit subdomain',
-      'description' => 'Edit a subdomain',
-      'access arguments' => array('edit subdomain'),
-      'page callback' => 'drupal_get_form',
-      'page arguments' => array('subdomain_edit_form'),
-      'file' => 'includes/form.subdomain_edit.inc',
-      'menu_name' => 'microgame_portal_admin',
-      'weight' => 11
-  );
-  $items["portal/admin"] = array(
+    $items["portal/admin"] = array(
       'title' => 'configuration',
       'description' => 'Microgame portal configuration',
       'access arguments' => array('edit subdomain'),
@@ -56,9 +35,51 @@ function portal_manager_menu() {
       'menu_name' => 'microgame_portal',
       'weight' => 100,
       'options' => array('attributes' => array('class' => array('mg_portal_menu', 'mg_portal_admin'))),
+  ); 
+  $items["portal/admin/subdomains"] = array(
+      'title' => 'Configured subdomains',
+      'description' => 'Configured subdomains',
+      'access arguments' => array('create subdomains'),
+      'page callback' => 'portal_subdomain_page',
+      'file' => 'includes/page.subdomains.inc',
+      'menu_name' => 'microgame_portal',
+      'type' => MENU_CALLBACK,
+      'weight' => 9
   );
-  
+  $items["portal/admin/subdomains/create"] = array(
+      'title' => 'Create subdomain',
+      'description' => 'Create a new subdomain',
+      'access arguments' => array('create subdomains'),
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('subdomain_edit_form'),
+      'file' => 'includes/form.subdomain_edit.inc',
+      'menu_name' => 'microgame_portal',
+      'type' => MENU_CALLBACK,
+      'weight' => 10
+  );
+  $items["portal/admin/subdomains/edit"] = array(
+      'title' => 'Edit subdomain',
+      'description' => 'Edit a subdomain',
+      'access arguments' => array('edit subdomain'),
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('subdomain_edit_form'),
+      'file' => 'includes/form.subdomain_edit.inc',
+      'menu_name' => 'microgame_portal',
+      'type' => MENU_CALLBACK,
+      'weight' => 11
+  );  
   return $items;
+}
+
+/**
+ * Implementation of hook_custom_theme
+ */
+function portal_manager_custom_theme() {
+  $theme = subdomain()->theme() ;
+  if (!empty($theme))
+  {
+    return $theme;
+  }
 }
 
 /* *

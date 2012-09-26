@@ -5,7 +5,7 @@
  * Install, update, and uninstall functions for the subdomain_manager module.
  */
 function portal_manager_uninstall() {
-  //db_drop_table('microgame_subdomains');
+  db_drop_table('microgame_subdomains');
   user_role_delete('portal manager');
   user_role_delete('group manager');
   menu_delete('microgame_portal');
@@ -22,7 +22,7 @@ function portal_manager_install() {
   $role->weight = $auth_role->weight + 2;
   user_role_save($role);
   $auth_permissions = user_role_permissions(array(DRUPAL_AUTHENTICATED_RID => 'authenticated users'));
-  $auth_permissions[DRUPAL_AUTHENTICATED_RID]  += array('create subdomains' => 1, 'edit subdomain' => 1);
+  $auth_permissions[DRUPAL_AUTHENTICATED_RID] += array('create subdomains' => 1, 'edit subdomain' => 1, 'upload games' => 1, 'enable games' => 1);
   // Grant permissions to our 'New role' role
   user_role_grant_permissions($role->rid, array_keys($auth_permissions[DRUPAL_AUTHENTICATED_RID]));
 
@@ -35,15 +35,15 @@ function portal_manager_install() {
   $role->weight = $auth_role->weight + 1;
   user_role_save($role);
   $auth_permissions = user_role_permissions(array(DRUPAL_AUTHENTICATED_RID => 'authenticated users'));
-  $auth_permissions[DRUPAL_AUTHENTICATED_RID] += array('edit subdomain' => 1);
+  $auth_permissions[DRUPAL_AUTHENTICATED_RID] += array('edit subdomain' => 1, 'enable games' => 1);
   // Grant permissions to our 'New role' role
   user_role_grant_permissions($role->rid, array_keys($auth_permissions[DRUPAL_AUTHENTICATED_RID]));
 
   // super user account
-  $result = db_query("SELECT rid FROM {role} where name like :id",array(':id' => 'administrator'));
+  $result = db_query("SELECT rid FROM {role} where name like :id", array(':id' => 'administrator'));
   $admin_rid = $result->fetchField(0);
-  user_role_change_permissions($admin_rid, array('create subdomains' => 1, 'edit subdomain' => 1));
-  
+  user_role_change_permissions($admin_rid, array('create subdomains' => 1, 'edit subdomain' => 1, 'upload games' => 1, 'enable games' => 1));
+
   $menu = array(
       'menu_name' => 'microgame_portal',
       'title' => st('Microgame portal'),
@@ -54,18 +54,17 @@ function portal_manager_install() {
       'menu_name' => 'microgame_portal_admin',
       'title' => st('Microgame portal administration'),
       'description' => st('Microgame portal administration pages'),
-  );  
+  );
   menu_save($menu);
 }
 
-/*
 function portal_manager_schema() {
   $schema['microgame_subdomains'] = array(
       'description' => 'Contains the configured subdomains',
       'fields' => array(
           'sdid' => array(
               'description' => 'Subdomain ID and primary key',
-              'type' => 'int',
+              'type' => 'serial',
               'length' => 4,
               'not null' => TRUE,
           ),
@@ -75,15 +74,22 @@ function portal_manager_schema() {
               'length' => 50,
               'not null' => TRUE,
           ),
-          'group' => array(
-              'description' => 'Groupname of the subdomain',
+          'group_name' => array(
+              'description' => 'Group name of the subdomain',
               'type' => 'varchar',
               'length' => 50,
               'not null' => TRUE,
           ),
+          'theme_name' => array(
+              'description' => 'Theme name of the subdomain',
+              'type' => 'varchar',
+              'length' => 255,
+              'not null' => TRUE,
+          ),
           'created_on' => array(
-              'description' => 'MySQL timestamp of creation',
-              'mysql_type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
+              'description' => 'Unix timestamp of creation',
+              'type' => 'int',
+              'length' => 11,
               'not null' => TRUE,
           ),
           'created_by_uid' => array(
@@ -93,8 +99,9 @@ function portal_manager_schema() {
               'not null' => TRUE,
           ),
           'updated_on' => array(
-              'description' => 'MySQL timestamp of last update',
-              'mysql_type' => "TIMESTAMP DEFAULT '0000-00-00 00:00:00'",
+              'description' => 'Unix timestamp of last update',
+              'type' => 'int',
+              'length' => 4,
               'not null' => TRUE,
           ),
           'updated_by_uid' => array(
@@ -109,4 +116,3 @@ function portal_manager_schema() {
   );
   return $schema;
 }
- */

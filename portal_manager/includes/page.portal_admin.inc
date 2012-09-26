@@ -6,13 +6,20 @@
  */
 function portal_admin_page() {
   
+  if ( subdomain()->name() == '' ) {
+    $options = array(l('Subdomains', 'portal/admin/subdomains/'));
+  }
+ else {
+    $options = array(l('Subdomains', 'portal/admin/subdomains/'), l('Create a subdomain', 'portal/admin/subdomains/create'), l('Edit this subdomain', 'portal/admin/subdomains/edit/'.subdomain()->name()));
+  }
+  
   $output = array(
       'first_para' => array(
           '#type' => 'markup',
           '#markup' => '<p>Portal admin functions</p>',
       ),
       'second_para' => array(
-          '#items' => array(l('Create a subdomain', 'portal/subdomain/create'), l('Create a subdomain', 'portal/subdomain/edit/'.subdomain()->name())),
+          '#items' => $options,
           '#theme' => 'item_list',
       ),
   );
