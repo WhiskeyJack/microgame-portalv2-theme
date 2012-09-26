@@ -13,6 +13,9 @@ function portal_manager_uninstall() {
 
 function portal_manager_install() {
 
+  // fetch all permissions from db so we can check if attached module still exists
+  $permission_list = db_select('role_permission', 'r')->fields('r')->execute()->fetchallAssoc('permission');
+
   $role = new stdClass();
   $role->name = 'portal manager';
   // load the authenticated user role
@@ -22,9 +25,16 @@ function portal_manager_install() {
   $role->weight = $auth_role->weight + 2;
   user_role_save($role);
   $auth_permissions = user_role_permissions(array(DRUPAL_AUTHENTICATED_RID => 'authenticated users'));
-  $auth_permissions[DRUPAL_AUTHENTICATED_RID] += array('create subdomains' => 1, 'edit subdomain' => 1, 'upload games' => 1, 'enable games' => 1);
-  // Grant permissions to our 'New role' role
-  user_role_grant_permissions($role->rid, array_keys($auth_permissions[DRUPAL_AUTHENTICATED_RID]));
+
+  // check for each permission if the corresponding module is still enabled, if not, don't include it
+  $default_permissions = array();
+  foreach ($auth_permissions[DRUPAL_AUTHENTICATED_RID] as $permission => $enabled) {
+    if (module_exists($permission_list[$permission]->module)) {
+      $default_permissions[$permission] = $enabled;
+    }
+  }
+  $new_permissions = $default_permissions + array('create subdomains' => 1, 'edit subdomain' => 1, 'upload games' => 1, 'enable games' => 1);
+  user_role_grant_permissions($role->rid, array_keys($new_permissions));
 
   $role = new stdClass();
   $role->name = 'group manager';
@@ -34,10 +44,8 @@ function portal_manager_install() {
   // New role will have all the authenticated user permissions by default.
   $role->weight = $auth_role->weight + 1;
   user_role_save($role);
-  $auth_permissions = user_role_permissions(array(DRUPAL_AUTHENTICATED_RID => 'authenticated users'));
-  $auth_permissions[DRUPAL_AUTHENTICATED_RID] += array('edit subdomain' => 1, 'enable games' => 1);
-  // Grant permissions to our 'New role' role
-  user_role_grant_permissions($role->rid, array_keys($auth_permissions[DRUPAL_AUTHENTICATED_RID]));
+  $new_permissions = $default_permissions + array('edit subdomain' => 1, 'enable games' => 1);
+  user_role_grant_permissions($role->rid, array_keys($new_permissions));
 
   // super user account
   $result = db_query("SELECT rid FROM {role} where name like :id", array(':id' => 'administrator'));
