@@ -12,8 +12,8 @@
 ; page at admin/appearance.
 
 screenshot  = screenshot.png
-name        = microgame
-description = Theme with widgets for the <a href="http://www.microgame.nl">InThere Microgame portal</a>.
+name        = Microgame Clean 0.1
+description = Clean theme with widgets for the <a href="http://www.microgame.nl">InThere Microgame portal</a>.
 
 ; This theme is compatible with Drupal 7 core. And it is a sub-theme of Zen.
 

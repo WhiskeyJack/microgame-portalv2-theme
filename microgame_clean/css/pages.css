@@ -56,7 +56,8 @@ body {
 }
 
 #logo { /* Wrapping link for logo */
-  float: left; /* LTR */
+  /*float: left; /* LTR */
+  float: right; /* LTR */
   margin: 0;
   padding: 0;
 }
@@ -65,7 +66,8 @@ body {
 }
 
 #name-and-slogan { /* Wrapper for website name and slogan */
-  float: left;
+  /* float: left; */
+  float: right;
 }
 
 #site-name { /* The name of the website */
@@ -107,7 +109,7 @@ a.mg_portal_profile { /* portal profile menu link */
   background-position: -12px -20px;
 }
 
-a.mg_portal_profile:hover { /* portal profile menu link */
+a.mg_portal_profile:hover, a.mg_portal_profile.active,  a.mg_portal_profile.active-trail { /* portal profile menu link */
   background-position: -12px 80px;
 }
 
@@ -115,7 +117,7 @@ a.mg_portal_activities { /* portal profile menu link */
   background-position: -82px -20px;
 }
 
-a.mg_portal_activities:hover { /* portal profile menu link */
+a.mg_portal_activities:hover, a.mg_portal_activities.active, a.mg_portal_activities.active-trail { /* portal activities menu link */
   background-position: -82px 80px;
 }
 
@@ -123,7 +125,7 @@ a.mg_portal_scores { /* portal profile menu link */
   background-position: -167px -20px;
 }
 
-a.mg_portal_scores:hover { /* portal profile menu link */
+a.mg_portal_scores:hover, a.mg_portal_scores.active, a.mg_portal_scores.active-trail  { /* portal scores menu link */
   background-position: -167px 80px;
 }
 
@@ -131,7 +133,7 @@ a.mg_portal_players { /* portal profile menu link */
   background-position: 202px -17px;
 }
 
-a.mg_portal_players:hover { /* portal profile menu link */
+a.mg_portal_players:hover, a.mg_portal_players.active, a.mg_portal_players.active-trail { /* portal players menu link */
   background-position: 202px 83px;
 }
 
@@ -139,7 +141,7 @@ a.mg_portal_stats { /* portal profile menu link */
   background-position: 134px -14px;
 }
 
-a.mg_portal_stats:hover { /* portal profile menu link */
+a.mg_portal_stats:hover, a.mg_portal_stats.active, a.mg_portal_stats.active-trail { /* portal statistics menu link */
   background-position: 134px 86px;
 }
 
@@ -147,10 +149,22 @@ a.mg_portal_admin { /* portal profile menu link */
   background-position: 64px -21px;
 }
 
-a.mg_portal_admin:hover { /* portal profile menu link */
+a.mg_portal_admin:hover, a.mg_portal_admin.active, a.mg_portal_admin.active-trail { /* portal admin menu link */
   background-position: 64px 79px;
 }
 
+.breadcrumb a.mg_portal_menu { /* only text for breadcrumb */
+  background-image: none;
+  font-family: Verdana,Tahoma,"DejaVu Sans",sans-serif;
+  font-size: 100%;
+  width: auto;
+  height: auto;
+}
+
+.mg_table th, .mg_table td { /* tables created for the microgame portal */
+  padding: 5px;
+  font-weight: normal;
+}
 
 /*
  * Main (container for everything else)
