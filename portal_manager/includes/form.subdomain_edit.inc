@@ -5,6 +5,8 @@
  * Contains the form for editing and creating a subdomain.
  */
 function subdomain_edit_form($form, &$form_state, $subdomain = '') {
+  menu_tree_set_path('microgame_portal', 'portal/admin');
+  
   global $theme_key;
   $defaults = array('name' => '', 'group_name' => '', 'theme_name' => $theme_key, 'sdid' => 0);
   if (!empty($subdomain)) {

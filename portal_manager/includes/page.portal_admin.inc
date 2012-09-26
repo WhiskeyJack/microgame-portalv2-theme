@@ -5,7 +5,7 @@
  * Content for page with portal admin functions
  */
 function portal_admin_page() {
-  
+ 
   if ( subdomain()->name() == '' ) {
     $options = array(l('Subdomains', 'portal/admin/subdomains/'));
   }
