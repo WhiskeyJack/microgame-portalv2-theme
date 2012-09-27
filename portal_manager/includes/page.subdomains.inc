@@ -21,13 +21,21 @@ function portal_subdomain_page() {
       array('data' => t('Name'), 'field' => 'name'),
       array('data' => t('Group name'), 'field' => 'group_name'),
       array('data' => t('Theme'), 'field' => 'theme_name'),
-      array('data' => t('Created by'), 'field' => 'created_by_uid'),
-      array('data' => t('Updated by'), 'field' => 'updated_by_uid'),
+      array('data' => t('Created by'), 'field' => 'created_by_name'),
+      array('data' => t('Updated by'), 'field' => 'updated_by_name'),
       array('data' => t('Created on'), 'field' => 'created_on'),
       array('data' => t('Updated on'), 'field' => 'updated_on'),
   );
 
-  $query = db_select('microgame_subdomains', 'm')->fields('m')->extend('PagerDefault')->limit(10)->extend('TableSort')->orderByHeader($header);
+  $query = db_select('microgame_subdomains', 'm');
+    $query->join('users', 'u', 'm.created_by_uid = u.uid');
+    $query->join('users', 'v', 'm.updated_by_uid = v.uid');
+    $query->fields('m');
+    $query->addField('u', 'name', 'created_by_name');
+    $query->addField('v', 'name', 'updated_by_name');
+    $details = $query->extend('PagerDefault')->limit(10)->extend('TableSort')->orderByHeader($header)->execute()->fetchAssoc();
+  
+//  /$query = db_select('microgame_subdomains', 'm')->fields('m')->extend('PagerDefault')->limit(10)->extend('TableSort')->orderByHeader($header);
   $result = $query->execute()->fetchallAssoc('sdid');
 
   $rows = array();
@@ -45,6 +53,7 @@ function portal_subdomain_page() {
       }
     }
     $fields['edit'] =  l(t('edit'),  'portal/admin/subdomains/edit/' .  $row->name);
+    $fields['games'] =  l(t('games'),  "portal/admin/subdomains/{$row->name}/games/");
     $rows[] = $fields;
   }
 

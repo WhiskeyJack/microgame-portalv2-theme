@@ -124,7 +124,7 @@ function portal_manager_schema() {
       'primary key' => array('sdid'),
       'unique_keys' => array('name'),
   );
-    $schema['microgame_games'] = array(
+  $schema['microgame_games'] = array(
       'description' => 'Contains the available games',
       'fields' => array(
           'gid' => array(
@@ -190,7 +190,7 @@ function portal_manager_schema() {
       'fields' => array(
           'gid' => array(
               'description' => 'Game ID',
-              'type' => 'serial',
+              'type' => 'int',
               'length' => 4,
               'not null' => TRUE,
           ),
@@ -206,8 +206,47 @@ function portal_manager_schema() {
               'length' => 10,
               'not null' => TRUE,
           ),
+          'uploaded_by_uid' => array(
+              'description' => 'User ID of uploader',
+              'type' => 'int',
+              'length' => 10,
+              'not null' => TRUE,
+          ),
+          'uploaded_on' => array(
+              'description' => 'Unix timestamp of upload',
+              'type' => 'int',
+              'length' => 11,
+              'not null' => TRUE,
+          ),
       ),
       'primary key' => array('gid', 'version_id'),
-      );
+  );
+  
+  $schema['microgame_game_versions'] = array(
+      'description' => 'Contains the game made available for a domain',
+      'fields' => array(
+          'sdid' => array(
+              'description' => 'Subdomain ID',
+              'type' => 'int',
+              'length' => 4,
+              'not null' => TRUE,
+          ),
+          'gid' => array(
+              'description' => 'Game ID',
+              'type' => 'int',
+              'length' => 4,
+              'not null' => TRUE,
+          ),
+          'enabled' => array(
+              'description' => 'Indicates if the game can be played for the domain',
+              'type' => 'int',
+              'length' => 4,
+              'not null' => TRUE,
+          ),
+      ),
+      'primary key' => array('sdid', 'gid'),
+  );
+  
+  
   return $schema;
 }

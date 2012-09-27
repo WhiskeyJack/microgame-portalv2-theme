@@ -7,10 +7,10 @@
 function portal_admin_page() {
  
   if ( subdomain()->name() == '' ) {
-    $options = array(l('Subdomains', 'portal/admin/subdomains/'));
+    $options = array(l('Subdomains', 'portal/admin/subdomains/'), l('Games', 'portal/admin/games/'));
   }
  else {
-    $options = array(l('Subdomains', 'portal/admin/subdomains/'), l('Create a subdomain', 'portal/admin/subdomains/create'), l('Edit this subdomain', 'portal/admin/subdomains/edit/'.subdomain()->name()));
+    $options = array(l('Subdomains', 'portal/admin/subdomains/'), l('Games', 'portal/admin/games/'), l('Create a subdomain', 'portal/admin/subdomains/create'), l('Edit this subdomain', 'portal/admin/subdomains/edit/'.subdomain()->name()));
   }
   
   $output = array(
