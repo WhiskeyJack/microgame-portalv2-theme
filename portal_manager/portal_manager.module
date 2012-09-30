@@ -125,6 +125,31 @@ function portal_manager_custom_theme() {
   }
 }
 
+
+/**
+ * Implements hook_theme().
+ *
+ * We need run our forms through custom theme functions in order to build the
+ * table structure which is required by tabledrag.js.  Before we can use our
+ * custom theme functions, we need to implement hook_theme in order to register
+ * them with Drupal.
+ *
+ * We are defining our theme hooks with the same name as the form generation
+ * function so that Drupal automatically calls our theming function when the
+ * form is displayed.
+ */
+function portal_manager_theme() {
+  return array(
+    // Theme function for the 'parent/child' example
+    'subdomain_game_edit_form' => array(
+      'render element' => 'form',
+      'file' => 'includes/form.subdomain-game.inc',
+    ),
+  );
+}
+
+
+
 /* *
  * Retrieves the subdomain singleton instance
  */
