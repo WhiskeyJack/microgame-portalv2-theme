@@ -166,6 +166,9 @@ a.mg_portal_admin:hover, a.mg_portal_admin.active, a.mg_portal_admin.active-trai
   font-weight: normal;
 }
 
+.mg_center {
+  text-align: center;
+}
 /*
  * Main (container for everything else)
  */
