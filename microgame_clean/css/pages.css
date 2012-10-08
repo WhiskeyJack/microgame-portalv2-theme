@@ -5,21 +5,21 @@
  * Style the markup found in page.tpl.php. Also includes some styling of
  * miscellaneous Drupal elements that appear in the $content variable, such as
  * ul.links, .pager, .more-link, etc.
- */
+*/
 
- 
- /* 
-  * Font support
- */
+
+/* 
+ * Font support
+*/
 @font-face {
   font-family: Prosto;
   src: url(../fonts/Prosto.ttf),
-         url(../fonts/Prosto.eot); /* IE9 */
+    url(../fonts/Prosto.eot); /* IE9 */
 }
 
 /*
  * Body
- */
+*/
 
 body {
   margin: 0;
@@ -33,7 +33,7 @@ body {
 /*
  * The skip-link link will be completely hidden until a user tabs to the link.
  * See the element-focusable rule in system.base.css.
- */
+*/
 
 #skip-link {
   margin: 0;
@@ -50,7 +50,7 @@ body {
 
 /*
  * Header
- */
+*/
 
 #header {
 }
@@ -95,14 +95,14 @@ body {
 }
 
 a.mg_portal_menu { /* portal profile menu items */
-  background-image: url('../images/set_1_transp.png') ;
+  background-image: url('../images/set_1_joy_transp.png') ;
   margin: 0;
   width: 56px;
   height: 75px;
   display: inline-block;
   font-family: "DejaVu Sans", Verdana;
-   font-size: 0;
-   text-align: center;
+  font-size: 0;
+  text-align: center;
 }
 
 a.mg_portal_profile { /* portal profile menu link */
@@ -123,6 +123,10 @@ a.mg_portal_activities:hover, a.mg_portal_activities.active, a.mg_portal_activit
 
 a.mg_portal_scores { /* portal profile menu link */
   background-position: -167px -20px;
+}
+
+a.mg_portal_games { /* portal profile menu link */
+  background-position: -230px -20px;
 }
 
 a.mg_portal_scores:hover, a.mg_portal_scores.active, a.mg_portal_scores.active-trail  { /* portal scores menu link */
@@ -153,6 +157,11 @@ a.mg_portal_admin:hover, a.mg_portal_admin.active, a.mg_portal_admin.active-trai
   background-position: 64px 79px;
 }
 
+a.mg_portal_games:hover, a.mg_portal_games.active, a.mg_portal_games.active-trail { /* portal admin menu link */
+  background-position: -230px -123px;
+}
+
+
 .breadcrumb a.mg_portal_menu { /* only text for breadcrumb */
   background-image: none;
   font-family: Verdana,Tahoma,"DejaVu Sans",sans-serif;
@@ -171,14 +180,14 @@ a.mg_portal_admin:hover, a.mg_portal_admin.active, a.mg_portal_admin.active-trai
 }
 /*
  * Main (container for everything else)
- */
+*/
 
 #main {
 }
 
 /*
  * Content
- */
+*/
 
 #content {
 }
@@ -284,11 +293,52 @@ span.field-label { /* The inline field label used by the Fences module */
 }
 
 /*
+ *  Game widgets 
+ * 
+*/
+.game_widget {
+  margin: 25px 25px;
+  float: left;
+  padding: 10px; 
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  width: 100px; 
+  height: 100px;
+  -moz-box-shadow: 5px 5px 2px #888;
+  -webkit-box-shadow: 5px 5px 2px #888;
+  box-shadow: 5px 5px 2px #888;
+  background-color: #fff;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#E4BDFF));
+  background-image: -webkit-linear-gradient(top, #FFFFFF, #E4BDFF); 
+  background-image: -moz-linear-gradient(top, #FFFFFF, #E4BDFF);
+  background-image: -ms-linear-gradient(top, #FFFFFF, #E4BDFF);
+  background-image: -o-linear-gradient(top, #FFFFFF, #E4BDFF);
+
+}
+.game_widget:hover {
+  margin: 25px 25px;
+  float: left;
+  padding: 10px; 
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  width: 100px; 
+  height: 100px;
+  
+  background-color: #fff;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#E4BDFF));
+  background-image: -webkit-linear-gradient(top, #FFFFFF, #E4BDFF); 
+  background-image: -moz-linear-gradient(top, #FFFFFF, #E4BDFF);
+  background-image: -ms-linear-gradient(top, #FFFFFF, #E4BDFF);
+  background-image: -o-linear-gradient(top, #FFFFFF, #E4BDFF);
+
+}
+
+/*
  * First sidebar (on left in LTR languages, on right in RTL)
  *
  * Remember to NOT add padding or margin to your .region-sidebar-first
  * (see the layout.css file.)
- */
+*/
 
 .region-sidebar-first {
 }
@@ -298,21 +348,21 @@ span.field-label { /* The inline field label used by the Fences module */
  *
  * Remember to NOT add padding or margin to your .region-sidebar-second
  * (see the layout.css file.)
- */
+*/
 
 .region-sidebar-second {
 }
 
 /*
  * Footer
- */
+*/
 
 #footer {
 }
 
 /*
  * Page bottom
- */
+*/
 
 .region-bottom { /* Wrapper for any blocks placed in the page bottom region */
 }
