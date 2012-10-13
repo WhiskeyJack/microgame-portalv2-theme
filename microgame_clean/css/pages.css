@@ -95,9 +95,9 @@ body {
 }
 
 a.mg_portal_menu { /* portal profile menu items */
-  background-image: url('../images/set_1_joy_transp.png') ;
+  background-image: url('../images/set_1.png') ;
   margin: 0;
-  width: 56px;
+  width: 60px;
   height: 75px;
   display: inline-block;
   font-family: "DejaVu Sans", Verdana;
@@ -106,61 +106,60 @@ a.mg_portal_menu { /* portal profile menu items */
 }
 
 a.mg_portal_profile { /* portal profile menu link */
-  background-position: -12px -20px;
+  background-position: -60px 0px;
 }
 
 a.mg_portal_profile:hover, a.mg_portal_profile.active,  a.mg_portal_profile.active-trail { /* portal profile menu link */
-  background-position: -12px 80px;
+  background-position: -60px 75px;
 }
 
 a.mg_portal_activities { /* portal profile menu link */
-  background-position: -82px -20px;
+  background-position: -120px 0px;
 }
 
 a.mg_portal_activities:hover, a.mg_portal_activities.active, a.mg_portal_activities.active-trail { /* portal activities menu link */
-  background-position: -82px 80px;
-}
-
-a.mg_portal_scores { /* portal profile menu link */
-  background-position: -167px -20px;
+  background-position: -120px 75px;
 }
 
 a.mg_portal_games { /* portal profile menu link */
-  background-position: -230px -20px;
-}
-
-a.mg_portal_scores:hover, a.mg_portal_scores.active, a.mg_portal_scores.active-trail  { /* portal scores menu link */
-  background-position: -167px 80px;
-}
-
-a.mg_portal_players { /* portal profile menu link */
-  background-position: 202px -17px;
-}
-
-a.mg_portal_players:hover, a.mg_portal_players.active, a.mg_portal_players.active-trail { /* portal players menu link */
-  background-position: 202px 83px;
-}
-
-a.mg_portal_stats { /* portal profile menu link */
-  background-position: 134px -14px;
-}
-
-a.mg_portal_stats:hover, a.mg_portal_stats.active, a.mg_portal_stats.active-trail { /* portal statistics menu link */
-  background-position: 134px 86px;
-}
-
-a.mg_portal_admin { /* portal profile menu link */
-  background-position: 64px -21px;
-}
-
-a.mg_portal_admin:hover, a.mg_portal_admin.active, a.mg_portal_admin.active-trail { /* portal admin menu link */
-  background-position: 64px 79px;
+  background-position: 0px 0px;
 }
 
 a.mg_portal_games:hover, a.mg_portal_games.active, a.mg_portal_games.active-trail { /* portal admin menu link */
-  background-position: -230px -123px;
+  background-position: 0px 75px;
 }
 
+a.mg_portal_scores { /* portal profile menu link */
+  background-position: -180px 0px;
+}
+
+a.mg_portal_scores:hover, a.mg_portal_scores.active, a.mg_portal_scores.active-trail  { /* portal scores menu link */
+  background-position: -180px 75px;
+}
+
+a.mg_portal_players { /* portal profile menu link */
+  background-position: -240px 0px;
+}
+
+a.mg_portal_players:hover, a.mg_portal_players.active, a.mg_portal_players.active-trail { /* portal players menu link */
+  background-position: -240px 75px;
+}
+
+a.mg_portal_stats { /* portal profile menu link */
+  background-position: -300px 0px;
+}
+
+a.mg_portal_stats:hover, a.mg_portal_stats.active, a.mg_portal_stats.active-trail { /* portal statistics menu link */
+  background-position: -300px 75px;
+}
+
+a.mg_portal_admin { /* portal profile menu link */
+  background-position: -360px 0px;
+}
+
+a.mg_portal_admin:hover, a.mg_portal_admin.active, a.mg_portal_admin.active-trail { /* portal admin menu link */
+  background-position: -360px 75px;
+}
 
 .breadcrumb a.mg_portal_menu { /* only text for breadcrumb */
   background-image: none;
