@@ -296,41 +296,52 @@ span.field-label { /* The inline field label used by the Fences module */
  *  Game widgets 
  * 
 */
+
+#game_box {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  height:auto !important; 
+  
+  text-align: center;
+}
+
 .game_widget {
   margin: 25px 25px;
-  float: left;
+  
   padding: 10px; 
   -moz-border-radius: 15px;
   border-radius: 15px;
-  width: 100px; 
-  height: 100px;
+  width: 120px; 
+  height: 120px;
   -moz-box-shadow: 5px 5px 2px #888;
   -webkit-box-shadow: 5px 5px 2px #888;
   box-shadow: 5px 5px 2px #888;
   background-color: #fff;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#E4BDFF));
-  background-image: -webkit-linear-gradient(top, #FFFFFF, #E4BDFF); 
-  background-image: -moz-linear-gradient(top, #FFFFFF, #E4BDFF);
-  background-image: -ms-linear-gradient(top, #FFFFFF, #E4BDFF);
-  background-image: -o-linear-gradient(top, #FFFFFF, #E4BDFF);
-
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#CC99FF), to(#E4BDFF));
+  background-image: -webkit-linear-gradient(top, #E4BDFF, #CC99FF); 
+  background-image: -moz-linear-gradient(top, #E4BDFF, #CC99FF);
+  background-image: -ms-linear-gradient(top, #E4BDFF, #CC99FF);
+  background-image: -o-linear-gradient(top, #E4BDFF, #CC99FF);
+  display: inline-table;
+  vertical-align: text-top;
 }
-.game_widget:hover {
-  margin: 25px 25px;
-  float: left;
-  padding: 10px; 
-  -moz-border-radius: 15px;
-  border-radius: 15px;
-  width: 100px; 
-  height: 100px;
-  
-  background-color: #fff;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#E4BDFF));
-  background-image: -webkit-linear-gradient(top, #FFFFFF, #E4BDFF); 
-  background-image: -moz-linear-gradient(top, #FFFFFF, #E4BDFF);
-  background-image: -ms-linear-gradient(top, #FFFFFF, #E4BDFF);
-  background-image: -o-linear-gradient(top, #FFFFFF, #E4BDFF);
 
+.game_widget p {
+  display: table-cell;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.game_widget:hover{
+   margin-left: 27px;
+   margin-right: 23px;
+  -moz-box-shadow: 2px 2px 2px #888;
+  -webkit-box-shadow: 2px 2px 2px #888;
+  box-shadow: 2px 2px 2px #888;
+    cursor: hand;
+    cursor: pointer;
 }
 
 /*
