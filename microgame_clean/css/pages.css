@@ -307,7 +307,6 @@ span.field-label { /* The inline field label used by the Fences module */
 
 .game_widget {
   margin: 25px 25px;
-  
   padding: 10px; 
   -moz-border-radius: 15px;
   border-radius: 15px;
@@ -334,6 +333,43 @@ span.field-label { /* The inline field label used by the Fences module */
 }
 
 .game_widget:hover{
+   margin-left: 27px;
+   margin-right: 23px;
+  -moz-box-shadow: 2px 2px 2px #888;
+  -webkit-box-shadow: 2px 2px 2px #888;
+  box-shadow: 2px 2px 2px #888;
+    cursor: hand;
+    cursor: pointer;
+}
+
+.game_play_btn {
+  margin: 25px 25px;
+  padding: 10px; 
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  width: 120px; 
+  height: 20px;
+  -moz-box-shadow: 5px 5px 2px #888;
+  -webkit-box-shadow: 5px 5px 2px #888;
+  box-shadow: 5px 5px 2px #888;
+  background-color: #fff;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#04B404), to(#0B610B));
+  background-image: -webkit-linear-gradient(top, #04B404, #0B610B); 
+  background-image: -moz-linear-gradient(top, #04B404, #0B610B);
+  background-image: -ms-linear-gradient(top, #04B404, #0B610B);
+  background-image: -o-linear-gradient(top, #04B404, #0B610B);
+  display: inline-table;
+  vertical-align: text-top;
+}
+
+.game_play_btn p {
+  display: table-cell;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.game_play_btn:hover{
    margin-left: 27px;
    margin-right: 23px;
   -moz-box-shadow: 2px 2px 2px #888;
