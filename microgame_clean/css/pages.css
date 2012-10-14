@@ -342,6 +342,28 @@ span.field-label { /* The inline field label used by the Fences module */
     cursor: pointer;
 }
 
+.game_disabled {
+        background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#DDDDDD), to(#BBBBBB));
+  background-image: -webkit-linear-gradient(top, #DDDDDD, #BBBBBB); 
+  background-image: -moz-linear-gradient(top, #DDDDDD, #BBBBBB);
+  background-image: -ms-linear-gradient(top, #DDDDDD, #BBBBBB);
+  background-image: -o-linear-gradient(top, #DDDDDD, #BBBBBB);
+}
+
+.game_disabled:hover{
+   margin-left: 25px;
+   margin-right: 25px;
+  -moz-box-shadow: 5px 5px 2px #888;
+  -webkit-box-shadow: 5px 5px 2px #888;
+  box-shadow: 5px 5px 2px #888;
+    cursor: auto;
+      background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#DDDDDD), to(#BBBBBB));
+  background-image: -webkit-linear-gradient(top, #DDDDDD, #BBBBBB); 
+  background-image: -moz-linear-gradient(top, #DDDDDD, #BBBBBB);
+  background-image: -ms-linear-gradient(top, #DDDDDD, #BBBBBB);
+  background-image: -o-linear-gradient(top, #DDDDDD, #BBBBBB);
+}
+
 .game_play_btn {
   margin: 25px 25px;
   padding: 10px; 
