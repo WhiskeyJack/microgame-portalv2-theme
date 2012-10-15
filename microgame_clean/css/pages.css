@@ -296,7 +296,7 @@ span.field-label { /* The inline field label used by the Fences module */
  * 
 */
 
-#game_box {
+#game_box, #gameinfo_box {
   margin-left: auto;
   margin-right: auto;
   display: block;
