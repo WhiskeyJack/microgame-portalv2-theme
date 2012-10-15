@@ -79,7 +79,7 @@
   <?php print $scripts; ?>
 
 </head>
-<body class="<?php print $classes; ?>" style="margin: 0;" <?php print $attributes;?>>
+<body class="<?php print $classes; ?>" style="margin: 0; overflow-y: hidden;" <?php print $attributes;?>>
   <?php print $page; ?>
 </body>
 </html>
