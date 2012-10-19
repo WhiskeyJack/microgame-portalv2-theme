@@ -1,0 +1,86 @@
+#profile-wrapper {
+	width: 804px;
+	margin: auto;
+	}
+
+/*********************************************************************************************/
+/* Positionering en afmetingen van de DIV structuur                                          */
+/*********************************************************************************************/
+	
+	#profile-wrapper .container {
+		border: 1px solid black;
+		margin-bottom: 15px;
+		
+		background-color: #ddd;
+		
+		border: 1px solid #662e91;		
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+		}
+	
+	#profile-wrapper .float {
+		float: left;
+		padding: 10px;
+		}
+
+	#profile-wrapper .d155 {
+		width: 135px;
+		margin-right: 15px;
+		}
+		
+	#profile-wrapper .d170 {
+		width: 150px;
+		}	
+		
+	#profile-wrapper .d200 {
+		width: 180px;
+		}	
+		
+	#profile-wrapper .d385 {
+		width: 365px;
+		margin-right: 15px;
+		}
+
+		#profile-wrapper .d400 {
+		width: 380px;
+		}		
+
+	#profile-wrapper .d430 {
+		width: 410px;
+		}	
+
+	#profile-wrapper .d630 {
+		width: 610px;
+		}	
+
+	#profile-wrapper .d800 {
+		width: 780px;
+		padding: 10px;
+		}			
+
+/*********************************************************************************************/
+/* DRUPAL tabellen                                                                           */
+/*********************************************************************************************/	
+
+	#profile-wrapper table {
+	margin: 0px;
+	padding: 0px;
+	}
+		
+		
+		
+/*********************************************************************************************/
+/* DRUPAL specifieke CSS                                                                     */
+/*********************************************************************************************/		
+	
+	#profile-wrapper img {
+		width: 150px;
+		height: 150px;
+		border: 0px solid #662e91;		
+		-moz-border-radius: 15px;
+		border-radius: 15px;
+	}
+	
+	#profile-wrapper p, h1, h2, h3, h4, h5{
+		margin: 0px;
+	}	
