@@ -1,4 +1,5 @@
 <?php
+
 #profile picture
 $profile_picture =  render($user_profile['user_picture']); 
 
@@ -18,8 +19,16 @@ $profile_hobby = render($user_profile['field_activiteiten']);
 #social media icons
 
 #profile table data:
-$profile_omschrijving = render ($user_profile['field_omschrijving']); 
-
+    global $user;
+$account = entity_load('user', array($user->uid));
+    $field = field_get_items('user', $account[$user->uid], 'field_omschrijving');
+    $view = field_view_field('user', $account[$user->uid], 'field_omschrijving');
+    
+   $test = field_view_value('user', $account[$user->uid], 'field_omschrijving', $account[$user->uid]->field_omschrijving['und'][0]);
+    
+    
+//$profile_omschrijving = render ($user_profile['field_omschrijving']); 
+$profile_omschrijving = mg_render_field('field_omschrijving');
 #score grafiek 1:
 
 $profile_eerste_grafiek = "
