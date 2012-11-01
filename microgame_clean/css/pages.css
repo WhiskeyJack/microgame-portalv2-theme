@@ -364,7 +364,7 @@ span.field-label { /* The inline field label used by the Fences module */
   background-image: -o-linear-gradient(top, #DDDDDD, #BBBBBB);
 }
 
-.game_play_btn {
+.game_play_btn, .game_video_btn {
   margin: 25px 25px;
   padding: 10px; 
   -moz-border-radius: 15px;
@@ -384,14 +384,14 @@ span.field-label { /* The inline field label used by the Fences module */
   vertical-align: text-top;
 }
 
-.game_play_btn p {
+.game_play_btn p, .game_video_btn p {
   display: table-cell;
   text-align: center;
   text-transform: uppercase;
   vertical-align: middle;
 }
 
-.game_play_btn:hover{
+.game_play_btn:hover, .game_video_btn:hover {
    margin-left: 27px;
    margin-right: 23px;
   -moz-box-shadow: 2px 2px 2px #888;
